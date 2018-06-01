@@ -26,4 +26,12 @@ public class Order {
     String generateCustomerInfo() {
         return getCustomerName() + getCustomerAddress();
     }
+
+    double calculateTotalSalesTax() {
+        return getLineItems().stream().mapToDouble(lineItem -> lineItem.totalAmount() * .10).sum();
+    }
+
+    double calculateTotalAmount() {
+        return getLineItems().stream().mapToDouble(lineItem -> lineItem.totalAmount() * .10 + lineItem.totalAmount()).sum();
+    }
 }
