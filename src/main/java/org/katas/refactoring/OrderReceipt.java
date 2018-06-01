@@ -16,44 +16,20 @@ public class OrderReceipt {
 
 	public String printReceipt() {
 		StringBuilder output = new StringBuilder();
-
 		output.append(generateReceintHeader());
-
         output.append(order.generateCustomerInfo());
-
-		// prints lineItems
-		appendLineItemInfo(output);
+		output.append(order.generateLineItemsInfo());
 		appendSalesTax(output);
-
 		appendTotalAmount(output);
 		return output.toString();
 	}
 
 	private void appendTotalAmount(StringBuilder output) {
-		double totalAmount = order.calculateTotalAmount();
-		// print total amount
-		output.append("Total Amount").append('\t').append(totalAmount);
+		output.append("Total Amount").append('\t').append(order.calculateTotalAmount());
 	}
 
 	private void appendSalesTax(StringBuilder output) {
-		double totalSalesTax = order.calculateTotalSalesTax();
-
-		// prints the state tax
-		output.append("Sales Tax").append('\t').append(totalSalesTax);
-	}
-
-	private void appendLineItemInfo(StringBuilder output) {
-		for (LineItem lineItem : order.getLineItems()) {
-			output.append(lineItem.getDescription());
-			output.append('\t');
-			output.append(lineItem.getPrice());
-			output.append('\t');
-			output.append(lineItem.getQuantity());
-			output.append('\t');
-			output.append(lineItem.totalAmount());
-			output.append('\n');
-
-		}
+		output.append("Sales Tax").append('\t').append(order.calculateTotalSalesTax());
 	}
 
 	private String generateReceintHeader() {

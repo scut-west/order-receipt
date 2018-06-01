@@ -1,6 +1,7 @@
 package org.katas.refactoring;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Order {
     Customer customer;
@@ -33,5 +34,9 @@ public class Order {
 
     double calculateTotalAmount() {
         return getLineItems().stream().mapToDouble(lineItem -> lineItem.totalAmount() * .10 + lineItem.totalAmount()).sum();
+    }
+
+    String generateLineItemsInfo() {
+        return getLineItems().stream().map(LineItem::generateLineItemInfo).collect(Collectors.joining());
     }
 }
