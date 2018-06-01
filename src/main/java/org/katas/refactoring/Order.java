@@ -39,4 +39,12 @@ public class Order {
     String generateLineItemsInfo() {
         return getLineItems().stream().map(LineItem::generateLineItemInfo).collect(Collectors.joining());
     }
+
+    String generateTotalAmountInfo() {
+        return "Total Amount" + '\t' + calculateTotalAmount();
+    }
+
+    String generateSalesTaxInfo() {
+        return "Sales Tax" + '\t' + calculateTotalSalesTax();
+    }
 }

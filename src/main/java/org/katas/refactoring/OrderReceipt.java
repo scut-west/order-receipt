@@ -15,21 +15,11 @@ public class OrderReceipt {
 	}
 
 	public String printReceipt() {
-		StringBuilder output = new StringBuilder();
-		output.append(generateReceintHeader());
-        output.append(order.generateCustomerInfo());
-		output.append(order.generateLineItemsInfo());
-		appendSalesTax(output);
-		appendTotalAmount(output);
-		return output.toString();
-	}
-
-	private void appendTotalAmount(StringBuilder output) {
-		output.append("Total Amount").append('\t').append(order.calculateTotalAmount());
-	}
-
-	private void appendSalesTax(StringBuilder output) {
-		output.append("Sales Tax").append('\t').append(order.calculateTotalSalesTax());
+		return generateReceintHeader() +
+				order.generateCustomerInfo() +
+				order.generateLineItemsInfo() +
+				order.generateSalesTaxInfo() +
+				order.generateTotalAmountInfo();
 	}
 
 	private String generateReceintHeader() {
